@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mzk.bzj.dao.mapper.BaUserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mzk.bzj.dao.model.BaUserInfo" >
+    <id column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+    <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="DECIMAL" />
+    <result column="CONTACT" property="contact" jdbcType="VARCHAR" />
+    <result column="PAPERS_TYPE" property="papersType" jdbcType="VARCHAR" />
+    <result column="PAPERS_NO" property="papersNo" jdbcType="VARCHAR" />
+    <result column="PROVINCE_ID" property="provinceId" jdbcType="VARCHAR" />
+    <result column="CITY_ID" property="cityId" jdbcType="VARCHAR" />
+    <result column="DISTRICT_ID" property="districtId" jdbcType="VARCHAR" />
+    <result column="TOWN_ID" property="townId" jdbcType="VARCHAR" />
+    <result column="COUNTRY_ID" property="countryId" jdbcType="CHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="FREE_BALANCE" property="freeBalance" jdbcType="DECIMAL" />
+    <result column="LOCK_BALANCE" property="lockBalance" jdbcType="DECIMAL" />
+    <result column="LOGIN_PWD" property="loginPwd" jdbcType="VARCHAR" />
+    <result column="PAY_PWD" property="payPwd" jdbcType="VARCHAR" />
+    <result column="USER_STATUS" property="userStatus" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="IMG_URL" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="B_LONGITUDE" property="bLongitude" jdbcType="DECIMAL" />
+    <result column="B_LATITUDE" property="bLatitude" jdbcType="DECIMAL" />
+    <result column="D_LONGITUDE" property="dLongitude" jdbcType="DECIMAL" />
+    <result column="D_LATITUDE" property="dLatitude" jdbcType="DECIMAL" />
+    <result column="SCALE_BALANCE" property="scaleBalance" jdbcType="DECIMAL" />
+    <result column="USER_LEVEL" property="userLevel" jdbcType="DECIMAL" />
+    <result column="USER_BANK" property="userBank" jdbcType="VARCHAR" />
+    <result column="USER_CREDIT" property="userCredit" jdbcType="DECIMAL" />
+    <result column="GEO_HASH" property="geoHash" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_NAME, REAL_NAME, NICK_NAME, EMAIL, CONTACT, PAPERS_TYPE, PAPERS_NO, PROVINCE_ID, 
+    CITY_ID, DISTRICT_ID, TOWN_ID, COUNTRY_ID, ADDRESS, FREE_BALANCE, LOCK_BALANCE, LOGIN_PWD, 
+    PAY_PWD, USER_STATUS, CREATE_TIME, IMG_URL, B_LONGITUDE, B_LATITUDE, D_LONGITUDE, 
+    D_LATITUDE, SCALE_BALANCE, USER_LEVEL, USER_BANK, USER_CREDIT, GEO_HASH
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from BA_USER_INFO
+    where USER_NAME = #{userName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from BA_USER_INFO
+    where USER_NAME = #{userName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mzk.bzj.dao.model.BaUserInfo" >
+    insert into BA_USER_INFO (USER_NAME, REAL_NAME, NICK_NAME, 
+      EMAIL, CONTACT, PAPERS_TYPE, 
+      PAPERS_NO, PROVINCE_ID, CITY_ID, 
+      DISTRICT_ID, TOWN_ID, COUNTRY_ID, 
+      ADDRESS, FREE_BALANCE, LOCK_BALANCE, 
+      LOGIN_PWD, PAY_PWD, USER_STATUS, 
+      CREATE_TIME, IMG_URL, B_LONGITUDE, 
+      B_LATITUDE, D_LONGITUDE, D_LATITUDE, 
+      SCALE_BALANCE, USER_LEVEL, USER_BANK, 
+      USER_CREDIT, GEO_HASH)
+    values (#{userName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{email,jdbcType=DECIMAL}, #{contact,jdbcType=VARCHAR}, #{papersType,jdbcType=VARCHAR}, 
+      #{papersNo,jdbcType=VARCHAR}, #{provinceId,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR}, 
+      #{districtId,jdbcType=VARCHAR}, #{townId,jdbcType=VARCHAR}, #{countryId,jdbcType=CHAR}, 
+      #{address,jdbcType=VARCHAR}, #{freeBalance,jdbcType=DECIMAL}, #{lockBalance,jdbcType=DECIMAL}, 
+      #{loginPwd,jdbcType=VARCHAR}, #{payPwd,jdbcType=VARCHAR}, #{userStatus,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{imgUrl,jdbcType=VARCHAR}, #{bLongitude,jdbcType=DECIMAL}, 
+      #{bLatitude,jdbcType=DECIMAL}, #{dLongitude,jdbcType=DECIMAL}, #{dLatitude,jdbcType=DECIMAL}, 
+      #{scaleBalance,jdbcType=DECIMAL}, #{userLevel,jdbcType=DECIMAL}, #{userBank,jdbcType=VARCHAR}, 
+      #{userCredit,jdbcType=DECIMAL}, #{geoHash,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mzk.bzj.dao.model.BaUserInfo" >
+    insert into BA_USER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="realName != null" >
+        REAL_NAME,
+      </if>
+      <if test="nickName != null" >
+        NICK_NAME,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="contact != null" >
+        CONTACT,
+      </if>
+      <if test="papersType != null" >
+        PAPERS_TYPE,
+      </if>
+      <if test="papersNo != null" >
+        PAPERS_NO,
+      </if>
+      <if test="provinceId != null" >
+        PROVINCE_ID,
+      </if>
+      <if test="cityId != null" >
+        CITY_ID,
+      </if>
+      <if test="districtId != null" >
+        DISTRICT_ID,
+      </if>
+      <if test="townId != null" >
+        TOWN_ID,
+      </if>
+      <if test="countryId != null" >
+        COUNTRY_ID,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="freeBalance != null" >
+        FREE_BALANCE,
+      </if>
+      <if test="lockBalance != null" >
+        LOCK_BALANCE,
+      </if>
+      <if test="loginPwd != null" >
+        LOGIN_PWD,
+      </if>
+      <if test="payPwd != null" >
+        PAY_PWD,
+      </if>
+      <if test="userStatus != null" >
+        USER_STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="imgUrl != null" >
+        IMG_URL,
+      </if>
+      <if test="bLongitude != null" >
+        B_LONGITUDE,
+      </if>
+      <if test="bLatitude != null" >
+        B_LATITUDE,
+      </if>
+      <if test="dLongitude != null" >
+        D_LONGITUDE,
+      </if>
+      <if test="dLatitude != null" >
+        D_LATITUDE,
+      </if>
+      <if test="scaleBalance != null" >
+        SCALE_BALANCE,
+      </if>
+      <if test="userLevel != null" >
+        USER_LEVEL,
+      </if>
+      <if test="userBank != null" >
+        USER_BANK,
+      </if>
+      <if test="userCredit != null" >
+        USER_CREDIT,
+      </if>
+      <if test="geoHash != null" >
+        GEO_HASH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=DECIMAL},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="papersType != null" >
+        #{papersType,jdbcType=VARCHAR},
+      </if>
+      <if test="papersNo != null" >
+        #{papersNo,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="districtId != null" >
+        #{districtId,jdbcType=VARCHAR},
+      </if>
+      <if test="townId != null" >
+        #{townId,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="freeBalance != null" >
+        #{freeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="lockBalance != null" >
+        #{lockBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="loginPwd != null" >
+        #{loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="payPwd != null" >
+        #{payPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bLongitude != null" >
+        #{bLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="bLatitude != null" >
+        #{bLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="dLongitude != null" >
+        #{dLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="dLatitude != null" >
+        #{dLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="scaleBalance != null" >
+        #{scaleBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="userLevel != null" >
+        #{userLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="userBank != null" >
+        #{userBank,jdbcType=VARCHAR},
+      </if>
+      <if test="userCredit != null" >
+        #{userCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="geoHash != null" >
+        #{geoHash,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mzk.bzj.dao.model.BaUserInfo" >
+    update BA_USER_INFO
+    <set >
+      <if test="realName != null" >
+        REAL_NAME = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=DECIMAL},
+      </if>
+      <if test="contact != null" >
+        CONTACT = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="papersType != null" >
+        PAPERS_TYPE = #{papersType,jdbcType=VARCHAR},
+      </if>
+      <if test="papersNo != null" >
+        PAPERS_NO = #{papersNo,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        PROVINCE_ID = #{provinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        CITY_ID = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="districtId != null" >
+        DISTRICT_ID = #{districtId,jdbcType=VARCHAR},
+      </if>
+      <if test="townId != null" >
+        TOWN_ID = #{townId,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        COUNTRY_ID = #{countryId,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="freeBalance != null" >
+        FREE_BALANCE = #{freeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="lockBalance != null" >
+        LOCK_BALANCE = #{lockBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="loginPwd != null" >
+        LOGIN_PWD = #{loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="payPwd != null" >
+        PAY_PWD = #{payPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null" >
+        USER_STATUS = #{userStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null" >
+        IMG_URL = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bLongitude != null" >
+        B_LONGITUDE = #{bLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="bLatitude != null" >
+        B_LATITUDE = #{bLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="dLongitude != null" >
+        D_LONGITUDE = #{dLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="dLatitude != null" >
+        D_LATITUDE = #{dLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="scaleBalance != null" >
+        SCALE_BALANCE = #{scaleBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="userLevel != null" >
+        USER_LEVEL = #{userLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="userBank != null" >
+        USER_BANK = #{userBank,jdbcType=VARCHAR},
+      </if>
+      <if test="userCredit != null" >
+        USER_CREDIT = #{userCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="geoHash != null" >
+        GEO_HASH = #{geoHash,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_NAME = #{userName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mzk.bzj.dao.model.BaUserInfo" >
+    update BA_USER_INFO
+    set REAL_NAME = #{realName,jdbcType=VARCHAR},
+      NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=DECIMAL},
+      CONTACT = #{contact,jdbcType=VARCHAR},
+      PAPERS_TYPE = #{papersType,jdbcType=VARCHAR},
+      PAPERS_NO = #{papersNo,jdbcType=VARCHAR},
+      PROVINCE_ID = #{provinceId,jdbcType=VARCHAR},
+      CITY_ID = #{cityId,jdbcType=VARCHAR},
+      DISTRICT_ID = #{districtId,jdbcType=VARCHAR},
+      TOWN_ID = #{townId,jdbcType=VARCHAR},
+      COUNTRY_ID = #{countryId,jdbcType=CHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      FREE_BALANCE = #{freeBalance,jdbcType=DECIMAL},
+      LOCK_BALANCE = #{lockBalance,jdbcType=DECIMAL},
+      LOGIN_PWD = #{loginPwd,jdbcType=VARCHAR},
+      PAY_PWD = #{payPwd,jdbcType=VARCHAR},
+      USER_STATUS = #{userStatus,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      IMG_URL = #{imgUrl,jdbcType=VARCHAR},
+      B_LONGITUDE = #{bLongitude,jdbcType=DECIMAL},
+      B_LATITUDE = #{bLatitude,jdbcType=DECIMAL},
+      D_LONGITUDE = #{dLongitude,jdbcType=DECIMAL},
+      D_LATITUDE = #{dLatitude,jdbcType=DECIMAL},
+      SCALE_BALANCE = #{scaleBalance,jdbcType=DECIMAL},
+      USER_LEVEL = #{userLevel,jdbcType=DECIMAL},
+      USER_BANK = #{userBank,jdbcType=VARCHAR},
+      USER_CREDIT = #{userCredit,jdbcType=DECIMAL},
+      GEO_HASH = #{geoHash,jdbcType=VARCHAR}
+    where USER_NAME = #{userName,jdbcType=VARCHAR}
+  </update>
+</mapper>

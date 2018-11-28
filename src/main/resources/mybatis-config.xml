@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<!-- 驼峰的自动映射 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+
+	<typeAliases>
+		<!-- 批量别名定义，扫描整个包下的类 -->
+		<package name="com.mzk.bzj.**.dao.model" />
+	</typeAliases>
+
+	<!-- 自定义类型处理器 -->
+	<!-- <typeHandlers>
+		<typeHandler handler="com.psbc.ifp.oc.common.util.EmptyStrIfNull" />
+		<typeHandler handler="com.psbc.ifp.oc.common.util.NullValueHandler" />
+	</typeHandlers> -->
+
+	<!-- <plugins> -->
+		<!-- 通用Maper -->
+		<!-- <plugin interceptor="com.github.abel533.mapperhelper.MapperInterceptor"> -->
+		<!-- 主键自增回写方法,默认值MYSQL,详细说明请看文档 -->
+		<!-- <property name="IDENTITY" value="POSTGRESQL" /> -->
+		<!-- 通用Mapper接口，多个通用接口用逗号隔开 -->
+		<!-- <property name="mappers" value="com.github.abel533.mapper.Mapper" /> -->
+		<!-- </plugin> -->
+
+		<!-- 配置分页插件 -->
+		<!-- com.github.pagehelper 为PageHelper类所在包名 -->
+		<!-- <plugin interceptor="com.github.pagehelper.PageHelper">
+			若报错:com.github.pagehelper.PageHelper cannot be cast to org.apache.ibatis.plugin.Interceptor
+			<plugin interceptor="com.github.pagehelper.PageInterceptor">
+
+			数据库方言dialect参数，可选值为[mysql,mariadb,sqlite,oracle,hsqldb,postgresql]
+			<property name="dialect" value="postgresql" />
+
+			<property name="offsetAsPageNum" value="oracle" />
+			<property name="rowBoundsWithCount" value="false" />
+			isPageSizeZero是否支持PageSize为0，true且pageSize=0时返回全部结果，false时分页
+			<property name="pageSizeZero" value="true" />
+			<property name="reasonable" value="false" />
+		</plugin> -->
+
+	<!-- </plugins> -->
+</configuration>

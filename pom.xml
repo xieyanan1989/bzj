@@ -1,0 +1,351 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.mak</groupId>
+  <artifactId>bzj</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>bzj</name>
+
+
+	<!-- 管理资源文件(默认的是src/main/resources下的,可以添加) -->
+	<properties>
+		<!-- 常用属性定义 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.8</jdk.version>
+		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+		
+        <!-- Common libs -->
+        <spring_version>4.3.10.RELEASE</spring_version>
+        <aspectj_version>1.8.5</aspectj_version>
+        <dubbo_version>2.5.7</dubbo_version>
+        <javassist_version>3.20.0-GA</javassist_version>
+        <netty_version>3.2.5.Final</netty_version>
+        <mina_version>1.1.7</mina_version>
+        <grizzly_version>2.1.4</grizzly_version>
+        <httpclient_version>4.5.3</httpclient_version>
+        <hessian_lite_version>3.2.1-fixed-2</hessian_lite_version>
+        <xstream_version>1.4.1</xstream_version>
+        <fastjson_version>1.2.31</fastjson_version>
+        <bsf_version>3.1</bsf_version>
+        <sorcerer_version>0.8</sorcerer_version>
+        <zookeeper_version>3.4.9</zookeeper_version>
+        <zkclient_version>0.2</zkclient_version>
+        <curator_version>2.12.0</curator_version>
+        <jedis_version>2.9.0</jedis_version>
+        <xmemcached_version>1.3.6</xmemcached_version>
+        <cxf_version>3.0.14</cxf_version>
+        <thrift_version>0.8.0</thrift_version>
+        <jfreechart_version>1.0.13</jfreechart_version>
+        <hessian_version>4.0.38</hessian_version>
+        <servlet_version>2.5</servlet_version>
+        <jetty_version>6.1.26</jetty_version>
+        <validation_version>1.1.0.Final</validation_version>
+        <hibernate_validator_version>5.4.1.Final</hibernate_validator_version>
+        <jel_version>3.0.1-b08</jel_version>
+        <jcache_version>1.0.0</jcache_version>
+        <sca_version>2.0-M5.1</sca_version>
+        <guice_version>3.0</guice_version>
+        <cglib_version>2.2</cglib_version>
+        <webx_version>3.1.6</webx_version>
+        <velocity_version>1.7</velocity_version>
+        <mybatis_version>3.2.2</mybatis_version>
+        <mybatis-spring_version>1.2.0</mybatis-spring_version>
+        <pgsql_version>9.4-1201</pgsql_version>
+        <!-- Log libs -->
+        <slf4j_version>1.7.25</slf4j_version>
+        <jcl_version>1.2</jcl_version>
+        <log4j_version>1.2.16</log4j_version>
+        <logback_version>1.2.2</logback_version>
+        <!-- Test libs -->
+        <junit_version>4.12</junit_version>
+        <easymock_version>3.4</easymock_version>
+        <jmockit_version>1.33</jmockit_version>
+        <druid_version>1.1.9</druid_version>
+		<!-- 指定启动类 -->
+		<start-class>com.mzk.bzj.main.Starter</start-class>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>1.5.9.RELEASE</version>
+				<type>pom</type>
+				<!-- import：从其它的pom文件中导入依赖设置。 -->
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+	<dependencies>
+		<!-- Spring boot -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<!-- 排除springboot默认日志工具,使用log4j -->
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- 健康监控 用于集中采集应用的各项指标信息 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<!-- End Spring boot -->
+
+
+		<!-- Spring 4.3.10 -->
+		<!-- Core Container 核心容器 -->
+		<!-- 核心工具类，Spring其它模块大量使用Spring-core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring_version}</version>
+		</dependency>
+		<!-- 运行时Spring容器 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring_version}</version>
+		</dependency>
+		<!-- Spring容器对第三方包的集成 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring_version}</version>
+		</dependency>
+		<!-- Spring定义Bean的支持 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring_version}</version>
+		</dependency>
+		<!-- 使用表达式语言在运行时查询和操作对象 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${spring_version}</version>
+		</dependency>
+		<!-- End Core Container 核心容器 -->
+
+		<!-- 基于AspectJ的AOP支持 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring_version}</version>
+		</dependency>
+		<!-- aspectj -->
+		<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${aspectj_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectj_version}</version>
+			</dependency>
+		<!-- End AOP -->
+
+
+		<!-- DataAccess/Integration 数据访问/集成 -->
+		<!-- 提供以JDBC访问数据库的支持 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring_version}</version>
+		</dependency>
+		<!-- druid数据库连接池 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid_version}</version>
+		</dependency>
+		<!-- PG数据库连接驱动 -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0</version>
+		</dependency>
+
+		<!-- MyBatis依赖包 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis_version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis-spring_version}</version>
+		</dependency>
+		<!-- End dubbo依赖包 -->
+		<dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${jcl_version}</version>
+            </dependency>
+            <!-- 图片压缩 -->
+            <dependency>
+			    <groupId>net.coobird</groupId>
+			    <artifactId>thumbnailator</artifactId>
+			    <version>0.4.8</version>
+			</dependency>
+		<dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j_version}</version>
+            </dependency>
+
+		<!-- Test libs -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+
+	<build>
+	<!-- 插件管理 -->
+<!-- 		<pluginManagement> -->
+<!-- 			<plugins> -->
+<!-- 				<plugin> -->
+<!-- 					<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 					<artifactId>maven-compiler-plugin</artifactId> -->
+<!-- 					<version>3.1</version> -->
+<!-- 					<configuration> -->
+<!-- 						<source>${jdk.version}</source> -->
+<!-- 						<target>${jdk.version}</target> -->
+<!-- 						<encoding>${project.build.sourceEncoding}</encoding> -->
+<!-- 					</configuration> -->
+<!-- 				</plugin> -->
+<!-- 				<plugin> -->
+<!-- 					<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 					<artifactId>maven-resources-plugin</artifactId> -->
+<!-- 					<version>2.6</version> -->
+<!-- 					<configuration> -->
+<!-- 						<encoding>${project.build.sourceEncoding}</encoding> -->
+<!-- 						<overwrite>true</overwrite> -->
+<!-- 					</configuration> -->
+<!-- 				</plugin> -->
+
+<!-- 				<plugin> -->
+<!-- 					<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 					<artifactId>maven-jar-plugin</artifactId> -->
+<!-- 					<version>2.4</version> -->
+<!-- 				</plugin> -->
+<!-- 			</plugins> -->
+<!-- 		</pluginManagement> -->
+
+		<!-- finalName打成包后的包名 -->
+		<finalName>bzjServer</finalName>
+		
+		<plugins>
+			<!-- 第一种方式 利用 appassembler-maven-plugin 打包，可以得到可执行命令: clean package appassembler:assemble -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<version>1.10</version>
+				<configuration>
+					<!-- 生成linux, windows两种平台的执行脚本 -->
+					<platforms>
+						<platform>windows</platform>
+						<platform>unix</platform>
+					</platforms>
+					<!-- 根目录 -->
+					<assembleDirectory>${project.build.directory}/bzjServer</assembleDirectory>
+					<!-- 打包的jar，以及maven依赖的jar放到这个目录里面 -->
+					<repositoryName>lib</repositoryName>
+					<!-- 可执行脚本的目录 -->
+					<binFolder>bin</binFolder>
+					<!-- 配置文件的目标目录 -->
+					<configurationDirectory>conf</configurationDirectory>
+					<!-- 拷贝配置文件到上面的目录中 -->
+					<copyConfigurationDirectory>true</copyConfigurationDirectory>
+					<!-- 从哪里拷贝配置文件 (默认src/main/config) -->
+					<configurationSourceDirectory>src/main/resources</configurationSourceDirectory>
+					<!-- lib目录中jar的存放规则，默认是${groupId}/${artifactId}的目录格式，flat表示直接把jar放到lib目录 -->
+					<repositoryLayout>flat</repositoryLayout>
+					<encoding>UTF-8</encoding>
+					<!-- <logsDirectory>logs</logsDirectory> -->
+					<!-- <tempDirectory>tmp</tempDirectory> -->
+					<programs>
+						<program>
+							<id>bzjServer</id>
+							<!-- 启动类 -->
+							<mainClass>com.mzk.bzj.main.Starter</mainClass>
+							<jvmSettings>
+								<extraArguments>
+									<extraArgument>-server</extraArgument>
+									<extraArgument>-Xmx512M</extraArgument>
+									<extraArgument>-Xms512M</extraArgument>
+								</extraArguments>
+							</jvmSettings>
+						</program>
+					</programs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<!-- <addClasspath>true</addClasspath> <classpathPrefix>lib/</classpathPrefix> -->
+							<mainClass>com.mzk.bzj.main.Starter</mainClass>
+						</manifest>
+					</archive>
+					<excludes>
+						<exclude>**/*.java</exclude>
+						<exclude>**/*.properties</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+		<!-- 资源配置 -->
+		<resources>
+			<!-- 所有的配置文件提取 -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+			<!-- 有些sql的xml文件是在这个目录下 -->
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+		</resources>
+	</build>
+</project>

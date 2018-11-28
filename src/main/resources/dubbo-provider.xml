@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="order-app" />
+    <!-- 生产注册中心 -->
+    <dubbo:registry protocol="zookeeper" address="22.224.59.139:2181,22.224.59.140:2181,22.224.59.141:2181,22.224.59.142:2181,22.224.59.143:2181,22.224.59.144:2181,22.224.59.145:2181" />
+    <!-- 指定dubbo暴露服务的协议和端口 -->
+    <dubbo:protocol name="dubbo" port="20882"/>
+    
+    <!-- 一些缺省配置 dubbo服务的统一入口filter 去除超时重试机制-->
+    <dubbo:provider filter="serverFilter" delay="-1" timeout="3000" retries="0"/>
+    
+    <import resource="classpath:dubbo-oc-activescanadd-service.xml"/>
+    <import resource="classpath:dubbo-oc-bescannedadd-service.xml"/>
+    <import resource="classpath:dubbo-finance-service.xml"/>
+    <import resource="classpath:dubbo-recharge-service.xml"/>
+    <import resource="classpath:dubbo-update-service.xml"/>
+    <import resource="classpath:dubbo-query-service.xml"/>
+    
+    <!-- <import resource="classpath:dubbo-delete-service.xml"/>
+    <import resource="classpath:dubbo-recover-service.xml"/> -->
+    
+</beans>
