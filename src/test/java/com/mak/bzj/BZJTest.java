@@ -93,6 +93,12 @@ public class BZJTest {
 	        System.out.println("签名串："+signstr);  
 	        System.out.println("验签结果："+RSAUtils.verify(content.getBytes("utf-8"), publicKey,signstr));  
 	        System.out.println();  
+	        
+	        String a = "abd";
+	        String b = a;
+	        b = "123";
+	        System.out.println("bbbbbb:"+b);
+	        System.out.println("aaaaaaaaaaa:"+a);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
